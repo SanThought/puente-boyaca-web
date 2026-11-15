@@ -1,0 +1,218 @@
+/* Puente de Boyacá — sitio cultural
+   Paleta: esmaltes de alfarería boyacense + fibra de fique
+   Tipografías: Fraunces (display) + IBM Plex Sans (texto), OFL */
+
+:root {
+  --papel: #f3ead8;
+  --papel-bajo: #ece1cc;
+  --tinta: #33291f;
+  --tinta-suave: #5c5245;
+  --terracota: #b4502a;
+  --turquesa: #2a7f7f;
+  --amarillo: #d99a2b;
+  --verde: #5f7050;
+  --cobalto: #274e6d;
+  --magenta: #9c4a63;
+  --linea: #d8cbb2;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 1.06rem;
+  line-height: 1.65;
+  /* grano de papel sutil */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.17 0 0 0 0 0.12 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+::selection { background: var(--amarillo); color: var(--tinta); }
+
+h1, h2, .hebra-nombre {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+h2 { font-size: clamp(1.7rem, 4.5vw, 2.4rem); margin: 0 0 1rem; }
+
+a { color: var(--cobalto); text-underline-offset: 3px; }
+a:hover { color: var(--terracota); }
+
+/* hebra de progreso (hilo tejido en el borde superior) */
+.hebra {
+  position: fixed; top: 0; left: 0; right: 0; height: 5px;
+  background: var(--linea); z-index: 10;
+}
+.hebra span {
+  display: block; height: 100%; width: 0;
+  background: linear-gradient(90deg, var(--terracota), var(--amarillo), var(--verde), var(--turquesa), var(--cobalto));
+  transition: width .12s linear;
+}
+
+/* encabezado */
+.tope {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 1.4rem 0;
+  max-width: 62rem; margin: 0 auto;
+}
+.marca { flex: 0 0 auto; }
+.nav { display: flex; gap: 1.3rem; font-size: .95rem; }
+.nav a { color: var(--tinta-suave); text-decoration: none; border-bottom: 2px solid transparent; padding-bottom: 2px; }
+.nav a:hover, .nav a:focus-visible { border-bottom-color: var(--terracota); color: var(--tinta); }
+
+main { max-width: 62rem; margin: 0 auto; padding: 0 1.4rem; }
+
+/* portada */
+.hero { padding: 4.5rem 0 3rem; max-width: 40rem; }
+.lugar {
+  margin: 0 0 .6rem; font-size: .92rem; font-weight: 500;
+  color: var(--tinta-suave); letter-spacing: .04em;
+}
+.hero h1 {
+  font-size: clamp(2.8rem, 8vw, 4.6rem);
+  margin: 0 0 1.1rem; color: var(--cobalto);
+}
+.lema { font-size: 1.18rem; color: var(--tinta); margin: 0 0 1.2rem; }
+.hero-nota { color: var(--tinta-suave); font-style: italic; margin: 0 0 2rem; }
+
+.muestrario { display: flex; gap: .55rem; align-items: center; }
+.muestra {
+  width: 2.1rem; height: 2.1rem; display: inline-block;
+  border: 2px solid rgba(51,41,31,.25);
+}
+.m-terracota { background: var(--terracota); border-radius: 58% 42% 55% 45% / 48% 55% 45% 52%; }
+.m-turquesa  { background: var(--turquesa);  border-radius: 45% 55% 50% 50% / 55% 45% 58% 42%; }
+.m-amarillo  { background: var(--amarillo);  border-radius: 52% 48% 42% 58% / 45% 52% 48% 55%; }
+.m-verde     { background: var(--verde);     border-radius: 48% 52% 55% 45% / 52% 48% 45% 55%; }
+.m-cobalto   { background: var(--cobalto);   border-radius: 55% 45% 48% 52% / 42% 55% 45% 58%; }
+.m-magenta   { background: var(--magenta);   border-radius: 42% 58% 52% 48% / 55% 42% 58% 45%; }
+
+/* divisor de hebras */
+.divisor {
+  height: 14px; margin: 1.2rem 0 2.6rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='14' viewBox='0 0 48 14'%3E%3Cpath d='M0 7 Q12 1 24 7 T48 7' fill='none' stroke='%23b4502a' stroke-width='2'/%3E%3Cpath d='M0 10 Q12 4 24 10 T48 10' fill='none' stroke='%232a7f7f' stroke-width='1.4' opacity='.7'/%3E%3C/svg%3E");
+  background-repeat: repeat-x; background-position: center;
+}
+
+/* adivina y revela */
+.adivina {
+  background: var(--papel-bajo);
+  border: 1px solid var(--linea);
+  border-radius: 4px;
+  padding: 1.8rem 1.6rem 1.6rem;
+  margin-bottom: 3rem;
+  max-width: 40rem;
+}
+.adivina h2 { font-size: clamp(1.3rem, 3vw, 1.6rem); margin-bottom: .4rem; }
+.pregunta { margin-top: 0; font-weight: 500; }
+.opciones { display: flex; flex-wrap: wrap; gap: .7rem; margin: 1rem 0; }
+.opcion {
+  font: inherit; font-weight: 500;
+  padding: .7rem 1.2rem; min-height: 44px;
+  border-radius: 999px;
+  border: 2px solid var(--cobalto);
+  background: transparent; color: var(--cobalto);
+  cursor: pointer;
+}
+.opcion:hover, .opcion:focus-visible { background: var(--cobalto); color: var(--papel); }
+.opcion.acierto { background: var(--verde); border-color: var(--verde); color: var(--papel); }
+.opcion.fallo { background: transparent; border-color: var(--linea); color: var(--tinta-suave); text-decoration: line-through; }
+.respuesta {
+  border-top: 2px dashed var(--linea);
+  padding-top: 1rem; margin-top: .4rem;
+}
+.respuesta .veredicto { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.15rem; margin: 0 0 .4rem; }
+
+/* caminos */
+.caminos { margin-bottom: 1rem; }
+.bajada { max-width: 38rem; color: var(--tinta-suave); }
+.hebras { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; gap: 1.1rem; }
+@media (min-width: 46rem) { .hebras { grid-template-columns: 1fr 1fr; } }
+
+.camino { border-left: 3px solid var(--linea); padding-left: 1.1rem; }
+.camino[data-color="cobalto"]   { border-left-color: var(--cobalto); }
+.camino[data-color="terracota"] { border-left-color: var(--terracota); }
+.camino[data-color="verde"]     { border-left-color: var(--verde); }
+.camino[data-color="turquesa"]  { border-left-color: var(--turquesa); }
+.camino[data-color="amarillo"]  { border-left-color: var(--amarillo); }
+.camino[data-color="magenta"]   { border-left-color: var(--magenta); }
+
+.hebra-boton {
+  display: flex; align-items: center; gap: 1rem;
+  width: 100%; min-height: 44px;
+  background: none; border: none; padding: .4rem 0;
+  text-align: left; cursor: pointer; color: inherit; font: inherit;
+}
+.esmalte {
+  flex: 0 0 auto; width: 2.6rem; height: 2.6rem;
+  border: 2px solid rgba(51,41,31,.25);
+  transition: transform .25s ease;
+}
+.hebra-boton:hover .esmalte, .hebra-boton:focus-visible .esmalte { transform: rotate(-6deg) scale(1.08); }
+.e-cobalto   { background: var(--cobalto);   border-radius: 55% 45% 48% 52% / 42% 55% 45% 58%; }
+.e-terracota { background: var(--terracota); border-radius: 58% 42% 55% 45% / 48% 55% 45% 52%; }
+.e-verde     { background: var(--verde);     border-radius: 48% 52% 55% 45% / 52% 48% 45% 55%; }
+.e-turquesa  { background: var(--turquesa);  border-radius: 45% 55% 50% 50% / 55% 45% 58% 42%; }
+.e-amarillo  { background: var(--amarillo);  border-radius: 52% 48% 42% 58% / 45% 52% 48% 55%; }
+.e-magenta   { background: var(--magenta);   border-radius: 42% 58% 52% 48% / 55% 42% 58% 45%; }
+
+.hebra-nombre { display: block; font-size: 1.35rem; }
+.hebra-pista { display: block; color: var(--tinta-suave); font-size: .95rem; }
+
+.capa { padding: .4rem 0 .6rem 3.6rem; }
+.capa p { margin: 0 0 .6rem; max-width: 32rem; }
+.estado {
+  font-size: .88rem; color: var(--tinta-suave);
+  font-style: italic;
+}
+
+/* historia con revelado */
+.historia { margin: 1rem 0 3rem; }
+.estampa {
+  background: var(--papel-bajo);
+  border: 1px solid var(--linea);
+  border-radius: 4px;
+  padding: 2rem 1.8rem;
+  max-width: 40rem;
+}
+.capa-h {
+  font-family: 'Fraunces', serif; font-weight: 400;
+  font-size: 1.22rem; line-height: 1.55;
+  margin: 0 0 1.4rem;
+}
+.capa-h:last-child { margin-bottom: 0; }
+.nota-archivo {
+  font-family: 'IBM Plex Sans', sans-serif; font-size: .95rem;
+  color: var(--tinta-suave); font-style: italic;
+  border-top: 2px dashed var(--linea); padding-top: 1rem;
+}
+.fuente { font-size: .85rem; color: var(--tinta-suave); max-width: 38rem; }
+
+/* revelado al hacer scroll */
+.revelar { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+.revelar.visible { opacity: 1; transform: none; }
+
+/* libreta */
+.libreta { max-width: 40rem; margin-bottom: 3.5rem; }
+
+footer {
+  border-top: 1px solid var(--linea);
+  max-width: 62rem; margin: 0 auto;
+  padding: 1.6rem 1.4rem 2.5rem;
+  color: var(--tinta-suave);
+}
+footer .mini { font-size: .85rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .revelar { opacity: 1; transform: none; transition: none; }
+  .hebra span { transition: none; }
+  .hebra-boton:hover .esmalte { transform: none; }
+}
