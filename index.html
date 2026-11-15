@@ -3,82 +3,167 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Puente de Boyacá — atractivos y saberes</title>
-<meta name="description" content="Sitio del proyecto Puente de Boyacá: atractivos y saberes. Página de prueba.">
-<style>
-  :root {
-    --tierra: #a4502c;      /* tierra cocida */
-    --cobalto: #1f4e79;     /* esmalte cobalto */
-    --lana: #efe7d8;        /* lana cruda */
-    --piedra: #5b564e;      /* gris piedra */
-    --ocre: #c98a2d;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--lana);
-    color: var(--piedra);
-    font-family: Georgia, 'Times New Roman', serif;
-    line-height: 1.6;
-  }
-  main {
-    max-width: 38rem;
-    margin: 0 auto;
-    padding: 18vh 1.5rem 4rem;
-  }
-  .marca {
-    width: 3.2rem; height: 3.2rem;
-    border-radius: 50%;
-    background:
-      radial-gradient(circle at 32% 30%, var(--ocre), var(--tierra) 68%);
-    border: 3px solid var(--cobalto);
-    margin-bottom: 2rem;
-  }
-  h1 {
-    font-size: 2rem;
-    color: var(--tierra);
-    margin: 0 0 .25rem;
-    font-weight: normal;
-  }
-  p.sub {
-    color: var(--cobalto);
-    margin-top: 0;
-    font-style: italic;
-  }
-  hr {
-    border: none;
-    border-top: 2px solid var(--ocre);
-    width: 4rem;
-    margin: 2rem 0;
-  }
-  a { color: var(--cobalto); }
-  footer {
-    margin-top: 4rem;
-    font-size: .85rem;
-    color: var(--piedra);
-  }
-</style>
+<title>Puente de Boyacá — territorio, oficios y memoria</title>
+<meta name="description" content="Sitio cultural de la vereda Puente de Boyacá (Ventaquemada, Boyacá): un archivo vivo de saberes que se abre camino con calma.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+
+<div class="hebra" aria-hidden="true"><span id="hebra-progreso"></span></div>
+
+<header class="tope">
+  <div class="marca" aria-hidden="true">
+    <svg viewBox="0 0 48 48" width="44" height="44">
+      <circle cx="24" cy="24" r="21" fill="none" stroke="#274e6d" stroke-width="2.5"/>
+      <path d="M8 20 Q16 14 24 20 T40 20" fill="none" stroke="#b4502a" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M8 27 Q16 21 24 27 T40 27" fill="none" stroke="#d99a2b" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M8 34 Q16 28 24 34 T40 34" fill="none" stroke="#5f7050" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <nav class="nav" aria-label="Secciones">
+    <a href="#caminos">Caminos</a>
+    <a href="#historia">El puente</a>
+    <a href="#libreta">La libreta</a>
+  </nav>
+</header>
+
 <main>
-  <div class="marca" aria-hidden="true"></div>
-  <h1>Puente de Boyacá</h1>
-  <p class="sub">Atractivos y saberes — Ventaquemada, Boyacá</p>
-  <hr>
-  <p>
-    Este es el sitio del proyecto. Todavía está en construcción: por ahora
-    esta página confirma que la base técnica (GitHub Pages, sitio estático,
-    sin servidor) funciona.
-  </p>
-  <p>
-    Las historias, los saberes y las personas del Puente se publicarán aquí
-    solo cuando la comunidad lo revise y lo apruebe. Mientras tanto, la
-    documentación de diseño del proyecto está en
-    <a href="https://github.com/SanThought/puente-boyaca-web">el repositorio</a>.
-  </p>
-  <footer>
-    Hecho con calma desde Boyacá. Sin rastreadores, sin frameworks, sin prisa.
-  </footer>
+
+  <section class="hero">
+    <p class="lugar">Vereda de Ventaquemada, Boyacá, Colombia</p>
+    <h1>Puente de Boyacá</h1>
+    <p class="lema">Un lugar pequeño por donde cruzó la historia grande —<br>
+    y donde todos los días alguien cocina, siembra, teje, cura y cuenta.</p>
+    <p class="hero-nota">Este sitio es un archivo vivo: se abre por capas, al ritmo de quien lo recorre.</p>
+    <div class="muestrario" aria-hidden="true">
+      <span class="muestra m-terracota"></span>
+      <span class="muestra m-turquesa"></span>
+      <span class="muestra m-amarillo"></span>
+      <span class="muestra m-verde"></span>
+      <span class="muestra m-cobalto"></span>
+      <span class="muestra m-magenta"></span>
+    </div>
+  </section>
+
+  <div class="divisor" aria-hidden="true"></div>
+
+  <section class="adivina" id="adivina">
+    <h2>Antes de seguir, una apuesta</h2>
+    <p class="pregunta">¿De qué planta sale la fibra con la que en esta región se han tejido sogas, costales y alpargatas?</p>
+    <div class="opciones" role="group" aria-label="Opciones de respuesta">
+      <button class="opcion" data-ok="no">El algodón</button>
+      <button class="opcion" data-ok="si">El fique</button>
+      <button class="opcion" data-ok="no">El lino</button>
+    </div>
+    <div class="respuesta" hidden>
+      <p class="veredicto"></p>
+      <p>El <strong>fique</strong> — una fibra dura y noble — se cultiva y se teje en varias zonas de Boyacá, como Nobsa. Este es un dato de la <em>región</em>; las fichas de este camino, recogidas en el Puente, se publicarán cuando la comunidad las revise.</p>
+    </div>
+  </section>
+
+  <section class="caminos" id="caminos">
+    <h2>Los caminos del saber</h2>
+    <p class="bajada">El archivo se teje en seis hebras. Cada color es un esmalte distinto, como en la alfarería de la región. Toque una hebra para abrir su capa.</p>
+
+    <ul class="hebras">
+      <li class="camino" data-color="cobalto">
+        <button class="hebra-boton" aria-expanded="false">
+          <span class="esmalte e-cobalto" aria-hidden="true"></span>
+          <span class="hebra-texto"><span class="hebra-nombre">El territorio</span>
+          <span class="hebra-pista">El puente, el río, el camino antiguo</span></span>
+        </button>
+        <div class="capa" hidden>
+          <p>Las historias que un lugar guarda: el paso del camino real, el río y las piedras que llevan nombre. El archivo ya guarda material de campo de este camino; sus fichas se publicarán tras la revisión comunitaria.</p>
+          <p class="estado">Estado: fichas en revisión comunitaria</p>
+        </div>
+      </li>
+      <li class="camino" data-color="terracota">
+        <button class="hebra-boton" aria-expanded="false">
+          <span class="esmalte e-terracota" aria-hidden="true"></span>
+          <span class="hebra-texto"><span class="hebra-nombre">La cocina</span>
+          <span class="hebra-pista">Fogones, masas y lo de todos los días</span></span>
+        </button>
+        <div class="capa" hidden>
+          <p>Lo que se come cuando hay algo que celebrar y lo que sostiene la semana: recetas, técnicas y medidas de la mano. El archivo ya guarda material de campo de este camino; sus fichas se publicarán tras la revisión comunitaria.</p>
+          <p class="estado">Estado: fichas en revisión comunitaria</p>
+        </div>
+      </li>
+      <li class="camino" data-color="verde">
+        <button class="hebra-boton" aria-expanded="false">
+          <span class="esmalte e-verde" aria-hidden="true"></span>
+          <span class="hebra-texto"><span class="hebra-nombre">Los oficios</span>
+          <span class="hebra-pista">Manos que hilan, siembran y amasan</span></span>
+        </button>
+        <div class="capa" hidden>
+          <p>Saberes que se aprenden haciendo: la tierra, la lana, la cosecha. Oficios que no caben en un manual. El archivo ya guarda material de campo de este camino; sus fichas se publicarán tras la revisión comunitaria.</p>
+          <p class="estado">Estado: fichas en revisión comunitaria</p>
+        </div>
+      </li>
+      <li class="camino" data-color="turquesa">
+        <button class="hebra-boton" aria-expanded="false">
+          <span class="esmalte e-turquesa" aria-hidden="true"></span>
+          <span class="hebra-texto"><span class="hebra-nombre">Las plantas que cuidan</span>
+          <span class="hebra-pista">Hierbas, preparados y saber esperar</span></span>
+        </button>
+        <div class="capa" hidden>
+          <p>La medicina casera: qué hierba, para qué, y cuándo no. Un conocimiento de cuidado que se transmite en voz baja. El archivo ya guarda material de campo de este camino; sus fichas se publicarán tras la revisión comunitaria.</p>
+          <p class="estado">Estado: fichas en revisión comunitaria</p>
+        </div>
+      </li>
+      <li class="camino" data-color="amarillo">
+        <button class="hebra-boton" aria-expanded="false">
+          <span class="esmalte e-amarillo" aria-hidden="true"></span>
+          <span class="hebra-texto"><span class="hebra-nombre">Los relatos</span>
+          <span class="hebra-pista">Historias que se cuentan en voz alta</span></span>
+        </button>
+        <div class="capa" hidden>
+          <p>La tradición oral: lo que la loma, el río y el oro han dejado en las historias de la gente. El archivo ya guarda material de campo de este camino; sus fichas se publicarán tras la revisión comunitaria.</p>
+          <p class="estado">Estado: fichas en revisión comunitaria</p>
+        </div>
+      </li>
+      <li class="camino" data-color="magenta">
+        <button class="hebra-boton" aria-expanded="false">
+          <span class="esmalte e-magenta" aria-hidden="true"></span>
+          <span class="hebra-texto"><span class="hebra-nombre">Las fiestas</span>
+          <span class="hebra-pista">El calendario del encuentro</span></span>
+        </button>
+        <div class="capa" hidden>
+          <p>Santos patronos, música y la plaza llena: cuándo se celebra y por qué importa. El archivo ya guarda material de campo de este camino; sus fichas se publicarán tras la revisión comunitaria.</p>
+          <p class="estado">Estado: fichas en revisión comunitaria</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <div class="divisor" aria-hidden="true"></div>
+
+  <section class="historia" id="historia">
+    <h2>El puente que cruzó la historia</h2>
+    <div class="estampa">
+      <p class="capa-h revelar">Sobre el río Teatinos hay un puente viejo, de piedra y cal, que hacía parte del camino real entre Bogotá y Tunja.</p>
+      <p class="capa-h revelar">El 7 de agosto de 1819 ese puente fue el escenario de la batalla que selló la independencia de Colombia. Por eso el nombre de esta vereda se escucha en todo el país.</p>
+      <p class="capa-h revelar">Hoy el puente es monumento nacional. Pero también es un lugar habitado: una vereda con su gente, sus oficios y su memoria de todos los días.</p>
+      <p class="capa-h revelar nota-archivo">La historia completa del monumento y de su remodelación — contada con la comunidad — está guardada en el archivo y se publicará cuando sea revisada.</p>
+    </div>
+    <p class="fuente">Hechos históricos de conocimiento público; el detalle documentado del proyecto permanece en el archivo privado hasta su revisión.</p>
+  </section>
+
+  <section class="libreta" id="libreta">
+    <h2>Una libreta que sigue abierta</h2>
+    <p>Este sitio nace de un trabajo de campo con la comunidad del Puente. Nada con rostros, voces o testimonios se publica sin que la comunidad lo revise y lo apruebe. Por eso las hebras de arriba todavía se ven vacías: preferimos una página honesta a un archivo apurado.</p>
+    <p>La documentación de diseño del proyecto — colores, tipografías, direcciones de experiencia — es pública y vive en el <a href="https://github.com/SanThought/puente-boyaca-web">repositorio del sitio</a>.</p>
+  </section>
+
 </main>
+
+<footer>
+  <p>Hecho con calma desde Boyacá. Sin analítica, sin frameworks, sin prisa.</p>
+  <p class="mini">Tipografías: Fraunces e IBM Plex Sans (licencia OFL). Paleta: esmaltes de la alfarería boyacense y fibra de fique.</p>
+</footer>
+
+<script src="assets/site.js" defer></script>
 </body>
 </html>
