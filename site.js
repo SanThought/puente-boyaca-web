@@ -40,9 +40,15 @@
     return out;
   }
 
+  function edgeKind(a, b) {
+    var k = "ed";
+    D.edges.forEach(function (e) { if ((e[0] === a && e[1] === b) || (e[0] === b && e[1] === a)) k = e[2]; });
+    return k;
+  }
+
   /* ---------- the map (schema of the mesh) ---------- */
-  var CENTERS = { cocina: [112, 122], oficios: [328, 122], territorio: [112, 352], comunidad: [328, 352] };
-  var RADIUS = 64;
+  var CENTERS = { cocina: [112, 120], oficios: [330, 120], territorio: [112, 356], comunidad: [330, 356] };
+  var RADIUS = 78;
   var pos = {};
   (function layout() {
     var byDomain = {};
@@ -61,13 +67,12 @@
     var cur = opts.current, curDomain = opts.domain, mini = !!opts.mini;
     var seen = visited();
     var near = cur ? neighbors(cur) : [];
-    var s = svg("svg", { viewBox: "0 0 440 480", role: "group", "aria-label": "Mapa de relaciones entre las fichas", class: "meshmap" + (mini ? " mini" : "") });
+    var s = svg("svg", { viewBox: "0 0 442 490", role: "group", "aria-label": "Mapa de relaciones entre las fichas", class: "meshmap" + (mini ? " mini" : "") });
     var gE = svg("g", { class: "edges" });
     D.edges.forEach(function (e) {
       var a = pos[e[0]], b = pos[e[1]];
       var on = cur && (e[0] === cur || e[1] === cur);
-      var cross = items[e[0]].domain !== items[e[1]].domain;
-      gE.appendChild(svg("line", { x1: a[0], y1: a[1], x2: b[0], y2: b[1], class: "edge" + (on ? " on" : "") + (cross ? " cross" : "") }));
+      gE.appendChild(svg("line", { x1: a[0], y1: a[1], x2: b[0], y2: b[1], class: "edge" + (on ? " on" : "") + (e[2] === "ed" ? " ed" : "") }));
     });
     s.appendChild(gE);
     Object.keys(D.domains).forEach(function (d) {
@@ -76,10 +81,9 @@
       var link = svg("a", { href: "#/d/" + d, "aria-label": "Hebra: " + D.domains[d].name });
       var t = svg("text", { x: c[0], y: c[1] + 4, "text-anchor": "middle", class: "dlabel" + (active ? " active" : ""), fill: D.domains[d].color });
       var words = D.domains[d].name.split(" ");
-      if (words.length > 2) {
-        t.appendChild(svg("tspan", { x: c[0], dy: "-0.2em" })); t.firstChild.textContent = words.slice(0, 2).join(" ");
-        var t2 = svg("tspan", { x: c[0], dy: "1.2em" }); t2.textContent = words.slice(2).join(" "); t.appendChild(t2);
-      } else { t.textContent = D.domains[d].name; }
+      var cut = words.length > 2 ? 2 : 1;
+      var t1 = svg("tspan", { x: c[0], dy: "-0.3em" }); t1.textContent = words.slice(0, cut).join(" "); t.appendChild(t1);
+      var t2 = svg("tspan", { x: c[0], dy: "1.2em" }); t2.textContent = words.slice(cut).join(" "); t.appendChild(t2);
       link.appendChild(t); s.appendChild(link);
     });
     D.items.forEach(function (it) {
@@ -97,6 +101,25 @@
       a.appendChild(g); s.appendChild(a);
     });
     return s;
+  }
+
+  function legend() {
+    return el("p", { class: "legend" }, [
+      el("span", { class: "lg solid", "aria-hidden": "true" }), " Relación que nombra una ficha del archivo. ",
+      el("span", { class: "lg dashed", "aria-hidden": "true" }), " Relación editorial, propuesta por este sitio."
+    ]);
+  }
+  function fichaList() {
+    var wrap = el("nav", { class: "flist", "aria-label": "Todas las fichas" });
+    Object.keys(D.domains).forEach(function (k) {
+      var d = D.domains[k];
+      var ul = el("ul");
+      D.items.filter(function (i) { return i.domain === k; }).forEach(function (i) {
+        ul.appendChild(el("li", null, [el("a", { href: "#/f/" + i.id, text: i.title })]));
+      });
+      wrap.appendChild(el("section", { style: "--c:" + d.color }, [el("h3", null, [dot(d.color), el("a", { href: "#/d/" + k, text: d.name })]), ul]));
+    });
+    return wrap;
   }
 
   /* ---------- components ---------- */
@@ -157,14 +180,15 @@
       el("figcaption", { text: b.qa + ", " + b.p })
     ]);
   }
-  function doors(ids, title) {
+  function doors(ids, title, from) {
     var wrap = el("nav", { class: "doors", "aria-label": title }, [el("h2", { text: title })]);
     var ul = el("ul");
     ids.forEach(function (id) {
       var it = items[id], d = D.domains[it.domain];
       var a = el("a", { href: "#/f/" + id, class: "door", style: "--c:" + d.color }, [
         dot(d.color),
-        el("span", { class: "door-b" }, [el("strong", { text: it.title }), el("span", { class: "door-s", text: it.hook })]),
+        el("span", { class: "door-b" }, [el("strong", { text: it.title }), el("span", { class: "door-s", text: it.hook }),
+          from && edgeKind(from, id) === "ed" ? el("span", { class: "etag", text: "Relación editorial, no la nombra el archivo" }) : null]),
         el("span", { class: "arrow", "aria-hidden": "true", text: "\u2192" })
       ]);
       ul.appendChild(el("li", null, [a]));
@@ -182,7 +206,8 @@
     ]);
     var map = el("section", { class: "home-map" }, [
       drawMap({}),
-      el("p", { class: "map-note", text: v ? "Has recorrido " + v + " de 16 fichas. Los puntos llenos son las que ya viste." : "Cada punto es una ficha. Las líneas son relaciones que el archivo marca entre ellas." })
+      el("p", { class: "map-note", text: v ? "Has recorrido " + v + " de 16 fichas. Los puntos llenos son las que ya viste." : "Cada punto es una ficha." }),
+      legend()
     ]);
     var extra = el("nav", { class: "extras", "aria-label": "Otros caminos" }, [
       el("a", { href: "#/tiempo", class: "extra" }, [el("strong", { text: "Línea del tiempo" }), el("span", { text: "De 1819 a 2026, qué dice el documento y qué dicen las fuentes públicas" })]),
@@ -196,7 +221,8 @@
       ul.appendChild(el("li", null, [el("a", { href: "#/d/" + k, class: "hebra", style: "--c:" + d.color }, [dot(d.color), el("span", { class: "door-b" }, [el("strong", { text: d.name }), el("span", { class: "door-s", text: d.blurb })]), el("span", { class: "count", text: n + "" })])]));
     });
     hebras.appendChild(ul);
-    return [intro, map, hebras, extra, footer()];
+    var all = el("section", { class: "allf" }, [el("h2", { text: "Las 16 fichas, en lista" }), fichaList()]);
+    return [intro, map, hebras, all, extra, footer()];
   }
   function pageDomain(k) {
     var d = D.domains[k]; if (!d) return pageHome();
@@ -243,8 +269,8 @@
     main.appendChild(el("details", { class: "gaps" }, [el("summary", { text: "Seguir leyendo: voces, fuentes y vacíos" }), more]));
     var ids = it.links.slice();
     var side = el("aside", { class: "minimap", "aria-label": "Dónde estás" }, [el("h2", { class: "sr", text: "Dónde estás" }), drawMap({ current: id, domain: it.domain, mini: true }),
-      el("p", { class: "map-note" }, ["Estás en ", el("a", { href: "#/d/" + it.domain, text: d.name }), ". Los puntos con nombre son las fichas vecinas."])]);
-    var out = [head, el("div", { class: "cols" }, [main, side]), el("div", { class: "doorsrow" }, [doors(ids, "Puertas a seguir")]), footer()];
+      el("p", { class: "map-note" }, ["Estás en ", el("a", { href: "#/d/" + it.domain, text: d.name }), ". Los puntos con nombre son las fichas vecinas."]), legend()]);
+    var out = [head, el("div", { class: "cols" }, [main, side]), el("div", { class: "doorsrow" }, [doors(ids, "Puertas a seguir", id)]), footer()];
     return out;
   }
   function pageTiempo() {
@@ -349,7 +375,8 @@
     panelBody.textContent = "";
     var seg = location.hash.replace(/^#\/?/, "").split("/");
     var o = {}; if (seg[0] === "f" && items[seg[1]]) { o.current = seg[1]; o.domain = items[seg[1]].domain; }
-    panelBody.appendChild(drawMap(o));
+    panelBody.appendChild(drawMap(o)); panelBody.appendChild(legend());
+    panelBody.appendChild(el("h2", { class: "flh", text: "O elige en lista" })); panelBody.appendChild(fichaList());
     panel.show();
   });
   document.getElementById("mapClose").addEventListener("click", function () { panel.close(); });
