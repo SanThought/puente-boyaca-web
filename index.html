@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Puente de Boyacá — atractivos y saberes</title>
+<meta name="description" content="Sitio del proyecto Puente de Boyacá: atractivos y saberes. Página de prueba.">
+<style>
+  :root {
+    --tierra: #a4502c;      /* tierra cocida */
+    --cobalto: #1f4e79;     /* esmalte cobalto */
+    --lana: #efe7d8;        /* lana cruda */
+    --piedra: #5b564e;      /* gris piedra */
+    --ocre: #c98a2d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--lana);
+    color: var(--piedra);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 38rem;
+    margin: 0 auto;
+    padding: 18vh 1.5rem 4rem;
+  }
+  .marca {
+    width: 3.2rem; height: 3.2rem;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 32% 30%, var(--ocre), var(--tierra) 68%);
+    border: 3px solid var(--cobalto);
+    margin-bottom: 2rem;
+  }
+  h1 {
+    font-size: 2rem;
+    color: var(--tierra);
+    margin: 0 0 .25rem;
+    font-weight: normal;
+  }
+  p.sub {
+    color: var(--cobalto);
+    margin-top: 0;
+    font-style: italic;
+  }
+  hr {
+    border: none;
+    border-top: 2px solid var(--ocre);
+    width: 4rem;
+    margin: 2rem 0;
+  }
+  a { color: var(--cobalto); }
+  footer {
+    margin-top: 4rem;
+    font-size: .85rem;
+    color: var(--piedra);
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="marca" aria-hidden="true"></div>
+  <h1>Puente de Boyacá</h1>
+  <p class="sub">Atractivos y saberes — Ventaquemada, Boyacá</p>
+  <hr>
+  <p>
+    Este es el sitio del proyecto. Todavía está en construcción: por ahora
+    esta página confirma que la base técnica (GitHub Pages, sitio estático,
+    sin servidor) funciona.
+  </p>
+  <p>
+    Las historias, los saberes y las personas del Puente se publicarán aquí
+    solo cuando la comunidad lo revise y lo apruebe. Mientras tanto, la
+    documentación de diseño del proyecto está en
+    <a href="https://github.com/SanThought/puente-boyaca-web">el repositorio</a>.
+  </p>
+  <footer>
+    Hecho con calma desde Boyacá. Sin rastreadores, sin frameworks, sin prisa.
+  </footer>
+</main>
+</body>
+</html>
