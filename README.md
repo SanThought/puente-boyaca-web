@@ -5,7 +5,12 @@ Repo público del **sitio** del proyecto Puente de Boyacá: atractivos y saberes
 
 Aquí vive todo lo que es del sitio:
 
-- `index.html` — página de prueba servida con GitHub Pages.
+- `index.html` — portada del archivo vivo: caminos del saber, historia pública
+  del puente y la mecánica de adivina-y-revela.
+- `assets/site.css` — paleta de esmaltes de la alfarería boyacense y fibra de
+  fique; tipografías Fraunces e IBM Plex Sans (OFL).
+- `assets/site.js` — interacciones ligeras en vanilla JS (sin frameworks):
+  revelado al hacer scroll, apertura de capas y la adivinanza.
 - `docs/direccion-diseno.md` — dirección de diseño registrada del proyecto.
 - `docs/investigacion-ux-skills.md` — investigación de skills de diseño y
   direcciones UX/UI, con licencias verificadas y precauciones de adopción.
@@ -14,12 +19,13 @@ El **archivo de datos** (el documento fuente "Memorias Vivas del Puente de
 Boyacá", su extracción página por página, las entradas curadas y las reglas
 editoriales) vive en un repositorio **privado** separado. Nada de ese material
 se publica aquí: el contenido con personas, fotos o testimonios está pendiente
-de revisión comunitaria.
+de revisión comunitaria. Por eso las fichas de los caminos aparecen como "en
+revisión comunitaria".
 
-## Prueba de GitHub Pages
+## Publicación
 
-La rama `main` se publica tal cual. La página de prueba confirma que el sitio
-estático funciona sin build ni servidor: HTML y CSS planos.
+La rama `main` se publica tal cual con GitHub Pages: HTML, CSS y JS planos,
+sin build ni servidor. Sitio: https://santhought.github.io/puente-boyaca-web/
 
 ## Aviso sobre las guías externas
 
