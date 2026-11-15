@@ -252,12 +252,12 @@ window.PUENTE = {
     ["monumento","loma","ed"],
     ["oro","loma","doc"],
     ["monumento","resistencia","doc"],
-    ["monumento","lideres","doc"],
+    ["monumento","lideres","ed"],
     ["resistencia","lideres","doc"],
     ["lideres","sanisidro","doc"],
     ["lideres","carmen","doc"],
     ["sanisidro","carmen","ed"],
-    ["cocido","lideres","doc"],
+    ["cocido","lideres","ed"],
     ["carmen","monumento","ed"]
   ],
   timeline: [
