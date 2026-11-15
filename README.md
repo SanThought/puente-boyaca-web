@@ -1,26 +1,26 @@
-# Puente de Boyacá — sitio web
+# Puente de Boyacá: sitio web
 
 Repo público del **sitio** del proyecto Puente de Boyacá: atractivos y saberes
 (vereda Puente de Boyacá, Ventaquemada, Boyacá, Colombia).
 
 Aquí vive todo lo que es del sitio:
 
-- `index.html` — portada del archivo vivo: caminos del saber, historia pública
-  del puente y la mecánica de adivina-y-revela.
-- `assets/site.css` — paleta de esmaltes de la alfarería boyacense y fibra de
+- `index.html`: portada del archivo vivo, con los caminos del saber, la
+  historia pública del puente y la mecánica de adivina y revela.
+- `assets/site.css`: paleta de esmaltes de la alfarería boyacense y fibra de
   fique; tipografías Fraunces e IBM Plex Sans (OFL).
-- `assets/site.js` — interacciones ligeras en vanilla JS (sin frameworks):
+- `assets/site.js`: interacciones ligeras en vanilla JS (sin frameworks):
   revelado al hacer scroll, apertura de capas y la adivinanza.
-- `docs/direccion-diseno.md` — dirección de diseño registrada del proyecto.
-- `docs/investigacion-ux-skills.md` — investigación de skills de diseño y
+- `docs/direccion-diseno.md`: dirección de diseño registrada del proyecto.
+- `docs/investigacion-ux-skills.md`: investigación de skills de diseño y
   direcciones UX/UI, con licencias verificadas y precauciones de adopción.
 
 El **archivo de datos** (el documento fuente "Memorias Vivas del Puente de
 Boyacá", su extracción página por página, las entradas curadas y las reglas
 editoriales) vive en un repositorio **privado** separado. Nada de ese material
-se publica aquí: el contenido con personas, fotos o testimonios está pendiente
-de revisión comunitaria. Por eso las fichas de los caminos aparecen como "en
-revisión comunitaria".
+se publica aquí: los permisos de publicación del contenido con personas, fotos
+o testimonios están pendientes. Por eso los caminos del sitio aparecen aún sin
+fichas publicadas.
 
 ## Publicación
 
